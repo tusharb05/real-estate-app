@@ -12,7 +12,7 @@ const jwt = require('jsonwebtoken');
 // });
 
 const createProperty = async (req, res) => {
-  console.log(req.body);
+  console.log(req.user);
   const { title, description, price, location, status, imageUrl } = req.body;
   try {
     const token = req.header('Authorization');
@@ -96,6 +96,7 @@ const deleteProperty = async (req, res) => {
 };
 
 const disableProperty = async (req, res) => {
+  console.log(req.user);
   const { propertyId } = req.body;
   try {
     // Get token from the Authorization header

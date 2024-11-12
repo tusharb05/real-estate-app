@@ -7,13 +7,13 @@ const propertyController = require('../../controllers/property.controller');
 const authMiddleware = require('../../middlewares/authMiddleware');
 const router = express.Router();
 
-router.post('/create', propertyController.createProperty);
-router.post('/delete', propertyController.deleteProperty);
-router.post('/disable', propertyController.disableProperty);
-router.post('/enable', propertyController.enableProperty);
-router.get('/get-seeker-properties', propertyController.getSeekerProperties);
-router.get('/get-admin-properties', propertyController.getAdminProperties);
-router.get('/get-advertiser-properties', propertyController.getAdvertiserProperties);
-router.get('/get-property-detail', propertyController.getSingleProperty);
+router.post('/create', authMiddleware, propertyController.createProperty);
+router.post('/delete', authMiddleware, propertyController.deleteProperty);
+router.post('/disable', authMiddleware, propertyController.disableProperty);
+router.post('/enable', authMiddleware, propertyController.enableProperty);
+router.get('/get-seeker-properties', authMiddleware, propertyController.getSeekerProperties);
+router.get('/get-admin-properties', authMiddleware, propertyController.getAdminProperties);
+router.get('/get-advertiser-properties', authMiddleware, propertyController.getAdvertiserProperties);
+router.get('/get-property-detail', authMiddleware, propertyController.getSingleProperty);
 
 module.exports = router;
