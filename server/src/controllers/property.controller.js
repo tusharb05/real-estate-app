@@ -14,11 +14,7 @@ const jwt = require('jsonwebtoken');
 const createProperty = async (req, res) => {
   console.log(req.body);
   const { title, description, price, location, status, imageUrl } = req.body;
-  // check if user is admin. header: Authorization will have a token. decode it, check in User table and see if "role" is Admin
-  // if he is, set advertiserId and UserId to id from the token, and create the Property and return success message
   try {
-    // Get token from the Authorization header
-    // const token = req.headers.Authorization?.split(' ')[1];
     const token = req.header('Authorization');
 
     if (!token) {
@@ -36,7 +32,6 @@ const createProperty = async (req, res) => {
       return res.status(403).json({ message: 'Only advertiser users can create properties' });
     }
 
-    // Create the property with userId as both advertiserId and userId
     const newProperty = await Property.create({
       title,
       description,
